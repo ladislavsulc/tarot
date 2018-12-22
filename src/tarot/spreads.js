@@ -9,20 +9,34 @@ import Modal from 'react-modal';
 import { CardListItem } from './cardList.js';
 import ReferenceCard from './referenceCard.js';
 
-console.log('process.env.PUBLIC_URL', process.env.PUBLIC_URL + '/Spreads')
+const customModalStyles = {
+   content : {
+		top                   : '50%',
+		left                  : '50%',
+		right                 : 'auto',
+		bottom                : 'auto',
+		width				  : '1200px',
+		marginRight           : '-50%',
+		transform             : 'translate(-50%, -50%)'
+   }
+};
+
+console.log('process.env.PUBLIC_URL', process.env.PUBLIC_URL + '/spreads')
 
 class Spreads extends Component {
 	render() {
 		return (
-			<Router basename={process.env.PUBLIC_URL + '/Spreads'}>
-				<div>
-					<h1>Available Spreads</h1>
-					<ul className='spreadsNav'>
-						<li><Link className='button' to="/OneCardDraw">One Card Draw</Link></li>
-						<li><Link className='button' to="/ThreeCardDraw">Three Card Draw</Link></li>
-						<li><Link className='button' to="/CelticCross">Celtic Cross</Link></li>
-					</ul>
-					<Route exec path="/OneCardDraw" component={() => <OneCardDraw deck={this.props.deck}/>}/>
+			<Router basename={process.env.PUBLIC_URL + '/spreads'}>
+				<div className="uk-container">
+					<section className="uk-section">
+						<h1>Available Spreads</h1>
+						<ul className='spreadsNav'>
+							<li><Link className='button' to="/one-card-draw">One Card Draw</Link></li>
+							<li><Link className='button' to="/ThreeCardDraw">Three Card Draw</Link></li>
+							<li><Link className='button' to="/CelticCross">Celtic Cross</Link></li>
+						</ul>
+					</section>
+					<Route exec path="/one-card-draw" component={() => <OneCardDraw deck={this.props.deck}/>}/>
 					<Route path="/ThreeCardDraw" component={() => <ThreeCardDraw deck={this.props.deck}/>}/>
 					<Route path="/CelticCross" component={() => <CelticCross deck={this.props.deck}/>}/>
 				</div>
@@ -66,7 +80,7 @@ class SpreadCard extends CardListItem {
 							// onClick={this.openModal}
 						>
 							<img alt='card' src={process.env.PUBLIC_URL+'/'+this.props.value.image}/>
-							<button className='button button-primary' onClick={this.openModal}>
+							<button className='uk-button uk-button-primary' onClick={this.openModal}>
 							?</button>
 						</div>
 						<div
@@ -81,8 +95,9 @@ class SpreadCard extends CardListItem {
 					isOpen={this.state.modalIsOpen}
 					onAfterOpen={this.afterOpenModal}
 					onRequestClose={this.closeModal}
-					// style={customModalStyles}
+					style={customModalStyles}
 					contentLabel='Example modal'
+					ariaHideApp={false}
 				>
 					<h2 className='u-pull-left referenceHead'>{this.props.value.name}</h2>
 					<button className='u-pull-right close' onClick={this.closeModal}>X</button>
@@ -107,7 +122,7 @@ class OneCardDraw extends Component {
 		return (
 			<div>
 				<p>This is a new one-card draw. Use it as a concept to meditate on for the day.</p>
-				<ul className='oneCardDrawList'>{drawList}</ul>
+				<ul className='uk-list'>{drawList}</ul>
 			</div>
 		)
 	}

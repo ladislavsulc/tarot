@@ -2,17 +2,17 @@ import React, { Component } from 'react';
 import Modal from 'react-modal';
 import ReferenceCard from './referenceCard.js';
 
-// const customModalStyles = {
-//   content : {
-//     top                   : '50%',
-//     left                  : '50%',
-//     right                 : 'auto',
-//     bottom                : 'auto',
-// 	width				  : '300px',
-//     marginRight           : '-50%',
-//     transform             : 'translate(-50%, -50%)'
-//   }
-// };
+const customModalStyles = {
+   content : {
+		top                   : '50%',
+		left                  : '50%',
+		right                 : 'auto',
+		bottom                : 'auto',
+		width				  : '1200px',
+		marginRight           : '-50%',
+		transform             : 'translate(-50%, -50%)'
+   }
+};
 
 class CardListItem extends Component {
 	constructor(){
@@ -42,7 +42,7 @@ class CardListItem extends Component {
 		return (
 			<div>
 				<button
-					className='cardButton'
+					className='uk-button uk-button-default'
 					onClick={this.openModal}
 				>{this.props.value.name}
 				</button>
@@ -50,8 +50,9 @@ class CardListItem extends Component {
 					isOpen={this.state.modalIsOpen}
 					onAfterOpen={this.afterOpenModal}
 					onRequestClose={this.closeModal}
-					// style={customModalStyles}
+					style={customModalStyles}
 					contentLabel='Example modal'
+					ariaHideApp={false}
 				>
 					<h2 className='u-pull-left referenceHead'>{this.props.value.name}</h2>
 					<button className='u-pull-right close' onClick={this.closeModal}>X</button>
@@ -78,10 +79,12 @@ class CardList extends Component {
 			return that.renderListItem(card)
 		});
 		return (
-			<div>
-				<h1>Card Reference</h1>
-				<ul className='cardList'>{cardList}</ul>
-			</div>
+			<section className="uk-section">
+				<div className="uk-container">
+					<h1>Card Reference</h1>
+					<ul className='uk-list'>{cardList}</ul>
+				</div>
+			</section>
 		)
 	}
 }
