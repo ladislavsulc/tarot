@@ -4,22 +4,10 @@ import {
 	Route,
 	Link
 } from 'react-router-dom';
-import Modal from 'react-modal';
+import Modal from 'react-responsive-modal';
 
 import { CardListItem } from './cardList.js';
 import ReferenceCard from './referenceCard.js';
-
-const customModalStyles = {
-   content : {
-		top                   : '50%',
-		left                  : '50%',
-		right                 : 'auto',
-		bottom                : 'auto',
-		width				  : '1200px',
-		marginRight           : '-50%',
-		transform             : 'translate(-50%, -50%)'
-   }
-};
 
 console.log('process.env.PUBLIC_URL', process.env.PUBLIC_URL + '/spreads')
 
@@ -27,18 +15,48 @@ class Spreads extends Component {
 	render() {
 		return (
 			<Router basename={process.env.PUBLIC_URL + '/spreads'}>
-				<div className="uk-container">
+				<div>
 					<section className="uk-section">
-						<h1>Available Spreads</h1>
-						<ul className='spreadsNav'>
-							<li><Link className='button' to="/one-card-draw">One Card Draw</Link></li>
-							<li><Link className='button' to="/ThreeCardDraw">Three Card Draw</Link></li>
-							<li><Link className='button' to="/CelticCross">Celtic Cross</Link></li>
-						</ul>
+						<div className="uk-container">	
+							<h1>Available Spreads</h1>
+							<div className="uk-child-width-1-3@m uk-child-width-1-2@s uk-grid-match" uk-grid="true">
+								<div>
+									<div className="uk-card-media-top uk-visible@s">
+										<Link to="/one-card-draw"><img src="https://getuikit.com/docs/images/light.jpg" alt="" /></Link>
+									</div>
+									<div className="uk-card uk-card-default uk-card-body">
+										<h3 className="uk-card-title"><Link to="/one-card-draw">One Card Draw</Link></h3>
+										<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+									</div>
+								</div>
+								<div>
+									<div className="uk-card-media-top uk-visible@s">
+										<Link to="/ThreeCardDraw"><img src="https://getuikit.com/docs/images/light.jpg" alt="" /></Link>
+									</div>
+									<div className="uk-card uk-card-primary uk-card-body">
+										<h3 className="uk-card-title"><Link to="/ThreeCardDraw">Three Card Draw</Link></h3>
+										<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+									</div>
+								</div>
+								<div>
+									<div className="uk-card-media-top uk-visible@s">
+										<Link to="/CelticCross"><img src="https://getuikit.com/docs/images/light.jpg" alt="" /></Link>
+									</div>
+									<div className="uk-card uk-card-secondary uk-card-body">
+										<h3 className="uk-card-title"><Link to="/CelticCross">Celtic Cross</Link></h3>
+										<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+									</div>
+								</div>
+							</div>
+						</div>
 					</section>
-					<Route exec path="/one-card-draw" component={() => <OneCardDraw deck={this.props.deck}/>}/>
-					<Route path="/ThreeCardDraw" component={() => <ThreeCardDraw deck={this.props.deck}/>}/>
-					<Route path="/CelticCross" component={() => <CelticCross deck={this.props.deck}/>}/>
+					<section className="uk-section uk-padding-remove-top">
+						<div className="uk-container">
+							<Route exec path="/one-card-draw" component={() => <OneCardDraw deck={this.props.deck}/>}/>
+							<Route path="/ThreeCardDraw" component={() => <ThreeCardDraw deck={this.props.deck}/>}/>
+							<Route path="/CelticCross" component={() => <CelticCross deck={this.props.deck}/>}/>
+						</div>
+					</section>
 				</div>
 			</Router>
 		)
@@ -54,16 +72,23 @@ function randomDraw(deck, number){
 }
 
 class SpreadCard extends CardListItem {
+	state = {
+		open: false,
+	};
+
+	onOpenModal = () => {
+		this.setState({ open: true });
+	};
+
+	onCloseModal = () => {
+		this.setState({ open: false });
+	};
 	constructor(props) {
 		super(props);
 		this.state = {
 			flipped: false,
-			modalIsOpen: false
 		}
 		this.flipCard = this.flipCard.bind(this);
-		this.openModal = this.openModal.bind(this);
-		this.afterOpenModal = this.afterOpenModal.bind(this);
-		this.closeModal = this.closeModal.bind(this);
 	}
 	flipCard(e) {
 		this.setState({
@@ -71,6 +96,7 @@ class SpreadCard extends CardListItem {
 		});
 	}
 	render() {
+		const { open } = this.state;
 		return (
 			<div>
 				<div className='cardContainer'>
@@ -79,9 +105,11 @@ class SpreadCard extends CardListItem {
 							className='front'
 							// onClick={this.openModal}
 						>
-							<img alt='card' src={process.env.PUBLIC_URL+'/'+this.props.value.image}/>
-							<button className='uk-button uk-button-primary' onClick={this.openModal}>
-							?</button>
+							<a onClick={this.onOpenModal}>
+								<img alt='card' src={process.env.PUBLIC_URL+'/'+this.props.value.image}/>
+								<button className='uk-button uk-button-primary' onClick={this.onOpenModal}>
+								Meaning</button>
+							</a>
 						</div>
 						<div
 							className='back'
@@ -91,16 +119,8 @@ class SpreadCard extends CardListItem {
 
 					</div>
 				</div>
-				<Modal
-					isOpen={this.state.modalIsOpen}
-					onAfterOpen={this.afterOpenModal}
-					onRequestClose={this.closeModal}
-					style={customModalStyles}
-					contentLabel='Example modal'
-					ariaHideApp={false}
-				>
+				<Modal open={open} onClose={this.onCloseModal} center>
 					<h2 className='u-pull-left referenceHead'>{this.props.value.name}</h2>
-					<button className='u-pull-right close' onClick={this.closeModal}>X</button>
 					<ReferenceCard value={this.props.value}/>
 				</Modal>
 			</div>
@@ -114,15 +134,15 @@ class OneCardDraw extends Component {
 		const drawList = this.draw.map(function(card, index){
 			// console.log('card', card, 'index', index)
 			return (
-				<li key={card.name}>
+				<div key={card.name}>
 					<SpreadCard value={card}/>
-				</li>
+				</div>
 			)
 		});
 		return (
 			<div>
-				<p>This is a new one-card draw. Use it as a concept to meditate on for the day.</p>
-				<ul className='uk-list'>{drawList}</ul>
+				<p className="uk-text-lead">This is a new one-card draw. Use it as a concept to meditate on for the day.</p>
+				<div className='uk-flex'>{drawList}</div>
 			</div>
 		)
 	}
@@ -145,15 +165,16 @@ class ThreeCardDraw extends Component {
 		const drawList = this.draw.map(function(card, index){
 			// console.log('card', card, 'index', index)
 			return (
-				<li key={card.name}>
-					<strong>{that.positions[index].placement}</strong><SpreadCard value={card}/>
-				</li>
+				<div className="uk-margin-medium-bottom uk-margin-right" key={card.name}>
+					<h5><strong>{that.positions[index].placement}</strong></h5>
+					<SpreadCard value={card}/>
+				</div>
 			)
 		});
 		return (
 			<div>
-				<p>This is a new three-card draw</p>
-				<ul className='threeCardDrawList'>{drawList}</ul>
+				<p className="uk-text-lead">This is a new three-card draw</p>
+				<div className="uk-flex uk-flex-wrap uk-child-width-1-2@s uk-child-width-1-4@m uk-child-width-1-6@l">{drawList}</div>
 			</div>
 		)
 	}
@@ -183,15 +204,15 @@ class CelticCross extends Component {
 		const drawList = this.draw.map(function(card, index){
 			// console.log('card', card, 'index', index)
 			return (
-				<li key={card.name}>
-					<strong>{that.positions[index].placement}</strong><SpreadCard value={card}/>
-				</li>
+				<div className="uk-margin-medium-bottom uk-margin-right" key={card.name}>
+					<h5><strong>{that.positions[index].placement}</strong></h5><SpreadCard value={card}/>
+				</div>
 			)
 		});
 		return (
 			<div>
-				<p>This is a new celtic cross draw</p>
-				<ul className='celticCrossDrawList'>{drawList}</ul>
+				<p className="uk-text-lead">This is a new celtic cross draw</p>
+				<div className="uk-flex uk-flex-wrap uk-child-width-1-3@s uk-child-width-1-4@m uk-child-width-1-6@l" uk-height-match="target: > div > h5">{drawList}</div>
 			</div>
 		)
 	}

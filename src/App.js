@@ -17,7 +17,7 @@ class App extends Component {
 		return (
 			<Router basename={process.env.PUBLIC_URL}>
 				<div>
-					<nav className="uk-navbar-container" uk-navbar="true">
+					<nav className="uk-navbar-container uk-navbar-transparent" uk-navbar="true">
 						<div className="uk-navbar-center uk-container">
 							<ul className='uk-navbar-nav'>
 								<li><Link to="/">Home</Link></li>
@@ -38,20 +38,18 @@ class App extends Component {
 class Home extends Component {
 	render() {
 		return (
-			<div className="uk-flex uk-flex-middle" uk-height-viewport="offset-top: true">
-				<div className="uk-container">
-				
-					<section className="uk-section uk-text-center">
-						
+			<div>
+				<section className="uk-section uk-section-secondary uk-text-center">
+					<div className="uk-flex uk-flex-middle" uk-height-viewport="expand: true">
+						<div className="uk-container">					
 							<h1>Welcome to Tarot Reader</h1>
 							<p className="uk-text-lead">Tarot reader is a simple tarot reading and reference app.</p>
 							<p className="uk-margin-top">
-								<Link to="/spreads" className="uk-button uk-button-primary">Spreads</Link>
+								<Link to="/spreads" className="uk-button uk-button-large uk-button-primary">Spreads</Link>
 							</p>
-						
-					</section>
-
-				</div>
+						</div>
+					</div>
+				</section>
 			</div>
 		)
 	}

@@ -1,9 +1,32 @@
 
+/*=============================================
+=            MODAL            =
+=============================================*/
+
+[class^="styles_modal"] {
+	max-width: 1200px;
+}
+[class^="styles_closeButton"] {
+	cursor: pointer;
+}
+[class^="styles_closeIcon"] {
+	transition: all .2s ease-in-out;
+}
+[class^="styles_closeIcon"]:hover {
+	fill: red;
+}
+
+/*=====  End of MODAL  ======*/
+
+
+
+
 
 ul.threeCardDrawList li, ul.celticCrossDrawList li {
 	display: inline-block;
 	float: left;
 	max-width: 200px;
+	margin-right: 2rem;
 }
 
 div.cardContainer {
@@ -42,19 +65,20 @@ div.spreadCard div {
 div.spreadCard div.front {
 	background-color: ivory;
 	transform: rotateY(180deg);
-
 }
 
 div.spreadCard div.back {
 	background-color: dodgerblue;
 	/*image from http://www.noqta.it/dromoscopio/*/
-	background: content-box url('./resource/pattern_28.gif')
+	background: content-box url('./resource/pattern_28.gif');
+	border-radius: .5rem;
+	cursor: pointer;
 }
 
 div.spreadCard div.front img {
 	flex: 0 0 auto;
 	align-self: center;
-	max-width: 90%;
+	border-radius: .5rem;
 	height: auto;
 }
 
@@ -110,10 +134,12 @@ h2.referenceHead {
 	font-size: 2.5rem;
 }
 
-button.close {
-	padding: 0 .5rem;
-	height: 2.5rem;
-	line-height: inherit;
+.uk-close {
+	
+	position: absolute;
+	top: 20px;
+	right: 20px;
+	cursor: pointer;
 }
 
 .tarotEntryParent h3 {
