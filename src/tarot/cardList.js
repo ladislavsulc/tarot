@@ -21,7 +21,7 @@ class CardListItem extends Component {
 		return (
 			<div>
 				<button
-					className='uk-button uk-button-default'
+					className='uk-button uk-button-default uk-width-1-1'
 					onClick={this.onOpenModal}
 				>{this.props.value.name}
 				</button>
@@ -50,10 +50,10 @@ class CardList extends Component {
 			return that.renderListItem(card)
 		});
 		return (
-			<section className="uk-section">
+			<section className="uk-section uk-section-primary">
 				<div className="uk-container">
-					<h1>Card Reference</h1>
-					<ul className='uk-list'>{cardList}</ul>
+					<h1 className="uk-text-center uk-margin-medium-bottom">Card Reference</h1>
+					<div className='uk-grid uk-child-width-1-4@l uk-child-width-1-2@s' uk-grid="true">{cardList}</div>
 				</div>
 			</section>
 		)

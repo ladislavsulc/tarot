@@ -16,9 +16,9 @@ class Spreads extends Component {
 		return (
 			<Router basename={process.env.PUBLIC_URL + '/spreads'}>
 				<div>
-					<section className="uk-section">
+					<section className="uk-section uk-section-primary uk-preserve-color">
 						<div className="uk-container">	
-							<h1>Available Spreads</h1>
+							<h1 className="uk-light uk-text-center uk-margin-medium-bottom">Available Spreads</h1>
 							<div className="uk-child-width-1-3@m uk-child-width-1-2@s uk-grid-match" uk-grid="true">
 								<div>
 									<div className="uk-card-media-top uk-visible@s">
@@ -33,7 +33,7 @@ class Spreads extends Component {
 									<div className="uk-card-media-top uk-visible@s">
 										<Link to="/ThreeCardDraw"><img src="https://getuikit.com/docs/images/light.jpg" alt="" /></Link>
 									</div>
-									<div className="uk-card uk-card-primary uk-card-body">
+									<div className="uk-card uk-card-default uk-card-body">
 										<h3 className="uk-card-title"><Link to="/ThreeCardDraw">Three Card Draw</Link></h3>
 										<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
 									</div>
@@ -42,7 +42,7 @@ class Spreads extends Component {
 									<div className="uk-card-media-top uk-visible@s">
 										<Link to="/CelticCross"><img src="https://getuikit.com/docs/images/light.jpg" alt="" /></Link>
 									</div>
-									<div className="uk-card uk-card-secondary uk-card-body">
+									<div className="uk-card uk-card-default uk-card-body">
 										<h3 className="uk-card-title"><Link to="/CelticCross">Celtic Cross</Link></h3>
 										<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
 									</div>
@@ -50,7 +50,7 @@ class Spreads extends Component {
 							</div>
 						</div>
 					</section>
-					<section className="uk-section uk-padding-remove-top">
+					<section className="uk-section uk-section-default">
 						<div className="uk-container">
 							<Route exec path="/one-card-draw" component={() => <OneCardDraw deck={this.props.deck}/>}/>
 							<Route path="/ThreeCardDraw" component={() => <ThreeCardDraw deck={this.props.deck}/>}/>
@@ -107,7 +107,7 @@ class SpreadCard extends CardListItem {
 						>
 							<a onClick={this.onOpenModal}>
 								<img alt='card' src={process.env.PUBLIC_URL+'/'+this.props.value.image}/>
-								<button className='uk-button uk-button-primary' onClick={this.onOpenModal}>
+								<button className='uk-button uk-button-primary uk-border-rounded' onClick={this.onOpenModal}>
 								Meaning</button>
 							</a>
 						</div>
@@ -141,7 +141,7 @@ class OneCardDraw extends Component {
 		});
 		return (
 			<div>
-				<p className="uk-text-lead">This is a new one-card draw. Use it as a concept to meditate on for the day.</p>
+				<h2 className="uk-heading-line uk-margin-medium-bottom"><span>This is a new one-card draw. Use it as a concept to meditate on for the day.</span></h2>
 				<div className='uk-flex'>{drawList}</div>
 			</div>
 		)
@@ -173,8 +173,8 @@ class ThreeCardDraw extends Component {
 		});
 		return (
 			<div>
-				<p className="uk-text-lead">This is a new three-card draw</p>
-				<div className="uk-flex uk-flex-wrap uk-child-width-1-2@s uk-child-width-1-4@m uk-child-width-1-6@l">{drawList}</div>
+				<h2 className="uk-heading-line uk-margin-medium-bottom"><span>This is a new three-card draw</span></h2>
+				<div className="uk-flex uk-flex-wrap uk-child-width-1-2@s uk-child-width-1-4@m uk-child-width-1-5@l">{drawList}</div>
 			</div>
 		)
 	}
@@ -211,8 +211,8 @@ class CelticCross extends Component {
 		});
 		return (
 			<div>
-				<p className="uk-text-lead">This is a new celtic cross draw</p>
-				<div className="uk-flex uk-flex-wrap uk-child-width-1-3@s uk-child-width-1-4@m uk-child-width-1-6@l" uk-height-match="target: > div > h5">{drawList}</div>
+				<h2 className="uk-heading-line uk-margin-medium-bottom"><span>This is a new celtic cross draw</span></h2>
+				<div className="uk-flex uk-flex-wrap uk-child-width-1-3@s uk-child-width-1-4@m uk-child-width-1-5@l" uk-height-match="target: > div > h5">{drawList}</div>
 			</div>
 		)
 	}

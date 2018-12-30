@@ -39,7 +39,7 @@ class Home extends Component {
 	render() {
 		return (
 			<div>
-				<section className="uk-section uk-section-secondary uk-text-center">
+				<section className="uk-section uk-section-primary uk-text-center">
 					<div className="uk-flex uk-flex-middle" uk-height-viewport="expand: true">
 						<div className="uk-container">					
 							<h1>Welcome to Tarot Reader</h1>
