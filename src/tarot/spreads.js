@@ -16,7 +16,7 @@ class Spreads extends Component {
 		return (
 			<Router basename={process.env.PUBLIC_URL + '/spreads'}>
 				<div>
-					<section className="uk-section uk-section-primary uk-preserve-color">
+					<section className="uk-section uk-section-primary">
 						<div className="uk-container">	
 							<h1 className="uk-light uk-text-center uk-margin-medium-bottom">Available Spreads</h1>
 							<div className="uk-child-width-1-3@m uk-child-width-1-2@s uk-grid-match" uk-grid="true">
@@ -24,7 +24,7 @@ class Spreads extends Component {
 									<div className="uk-card-media-top uk-visible@s">
 										<Link to="/one-card-draw"><img src="https://getuikit.com/docs/images/light.jpg" alt="" /></Link>
 									</div>
-									<div className="uk-card uk-card-default uk-card-body">
+									<div className="uk-card uk-card-primary uk-card-body">
 										<h3 className="uk-card-title"><Link to="/one-card-draw">One Card Draw</Link></h3>
 										<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
 									</div>
@@ -33,7 +33,7 @@ class Spreads extends Component {
 									<div className="uk-card-media-top uk-visible@s">
 										<Link to="/ThreeCardDraw"><img src="https://getuikit.com/docs/images/light.jpg" alt="" /></Link>
 									</div>
-									<div className="uk-card uk-card-default uk-card-body">
+									<div className="uk-card uk-card-primary uk-card-body">
 										<h3 className="uk-card-title"><Link to="/ThreeCardDraw">Three Card Draw</Link></h3>
 										<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
 									</div>
@@ -42,7 +42,7 @@ class Spreads extends Component {
 									<div className="uk-card-media-top uk-visible@s">
 										<Link to="/CelticCross"><img src="https://getuikit.com/docs/images/light.jpg" alt="" /></Link>
 									</div>
-									<div className="uk-card uk-card-default uk-card-body">
+									<div className="uk-card uk-card-primary uk-card-body">
 										<h3 className="uk-card-title"><Link to="/CelticCross">Celtic Cross</Link></h3>
 										<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
 									</div>
@@ -50,7 +50,7 @@ class Spreads extends Component {
 							</div>
 						</div>
 					</section>
-					<section className="uk-section uk-section-default">
+					<section className="uk-section uk-section-primary">
 						<div className="uk-container">
 							<Route exec path="/one-card-draw" component={() => <OneCardDraw deck={this.props.deck}/>}/>
 							<Route path="/ThreeCardDraw" component={() => <ThreeCardDraw deck={this.props.deck}/>}/>

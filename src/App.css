@@ -76,6 +76,12 @@ h5,
   color: var(--uk-text-color);
 }
 
+.uk-section-primary:not(.uk-preserve-color) h4,
+.uk-section-primary:not(.uk-preserve-color) h5,
+.uk-section-primary:not(.uk-preserve-color) h6 {
+  opacity: 0.75;
+}
+
 /*
 	 Heading Line
 	 ========================================================================== */
@@ -192,7 +198,7 @@ div.spreadCard {
   position: absolute;
   transition: 1s;
   transform-style: preserve-3d;
-  box-shadow: 0.2rem 0.2rem 0.5rem #ccc;
+  box-shadow: 0.2rem 0.2rem 0.5rem var(--uk-purple-darker);
   border-radius: 0.5rem;
 }
 
@@ -209,7 +215,7 @@ div.spreadCard div {
   align-content: space-between;
   align-items: flex-start;
   border-radius: 0.5rem;
-  padding: 5px 4px;
+  /*padding: 5px 4px;*/
 }
 
 div.spreadCard div.front {

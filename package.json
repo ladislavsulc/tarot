@@ -4,14 +4,15 @@
   "private": true,
   "homepage": "/",
   "dependencies": {
-    "react": "^16.0.0",
-    "react-dom": "^16.0.0",
+    "react": "^16.8.3",
+    "react-dom": "^16.8.3",
+    "react-helmet": "^5.2.0",
     "react-modal": "^3.1.2",
-    "react-responsive-modal": "^3.5.1",
+    "react-responsive-modal": "^3.6.0",
     "react-router": "^4.2.0",
     "react-router-dom": "^4.2.2",
-    "react-scripts": "1.0.17",
-    "uikit": "^3.0.0-rc.25",
+    "react-scripts": "^2.1.5",
+    "uikit": "^3.0.3",
     "webfontloader": "^1.6.28"
   },
   "scripts": {
@@ -23,6 +24,12 @@
     "deploy": "gh-pages -d build"
   },
   "devDependencies": {
-    "gh-pages": "^1.1.0"
-  }
+    "gh-pages": "^2.0.1"
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ]
 }
