@@ -1,6 +1,6 @@
 # Tarot Reader
 
-This app provides a basic tarot card reference and a simple spread generator.
+Česká verze aplikace. This app provides a basic tarot card reference and a simple spread generator.
 
 It was made to practice creating a simple React app from scratch(ish). It's functionally done but the design is kinda just wireframed at this point. Oh, this project also uses [Skeleton](http://getskeleton.com/) for some basic CSS normalization, utilities and buttons. Nothing fancy.
 
